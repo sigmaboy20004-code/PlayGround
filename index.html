@@ -20,7 +20,7 @@
       <button id="pause-button" class="icon-button" aria-label="Pause">Ⅱ</button>
     </header>
     <section class="hud">
-      <div class="mission-card"><div class="eyebrow">CURRENT OBJECTIVE</div><div id="objective">Follow the signal into Gotham.</div><div class="progress-track"><i id="progress-fill"></i></div><small id="progress-label">0 / 8 case clues</small></div>
+      <div class="mission-card"><div class="eyebrow">CURRENT OBJECTIVE</div><div id="objective">Batcave briefing: check the Batcomputer.</div><div class="progress-track"><i id="progress-fill"></i></div><small id="progress-label">HEADQUARTERS · GOTHAM CASE FILES</small></div>
       <div class="hero-card"><div class="hero-avatar" id="hero-avatar">B</div><div><b id="hero-name">THE BAT</b><div class="health"><i id="health-fill"></i></div><small id="health-label">VITALS 100%</small></div><button id="swap-button" title="Swap character (Q)">⇄ <span>Q</span></button></div>
     </section>
     <div id="toast" class="toast"></div>
@@ -28,6 +28,8 @@
     <div id="detective-overlay" class="detective-overlay hidden"><b>DETECTIVE VISION</b><span>Evidence and hostile signatures highlighted · Robin cannot use this mode</span></div>
     <div id="riddle-card" class="riddle-card hidden"><small>RIDDLER'S CHALLENGE <span id="riddle-index"></span></small><b id="riddle-question"></b><div id="riddle-answers"></div><em>Choose with 1 · 2 · 3</em></div>
     <div id="garage-screen" class="overlay hidden"><div class="pause-panel garage-panel"><div class="title-kicker">WAYNE CAVE · VEHICLE BAY</div><h2>CHOOSE YOUR RIDE.</h2><p id="garage-description">A vehicle for every kind of hero.</p><div class="garage-options"><button data-vehicle="batmobile" class="garage-option"><b>BATMOBILE</b><span>Armored pursuit · Batman</span></button><button data-vehicle="bike" class="garage-option"><b>ROBIN'S MOTORCYCLE</b><span>Agile street-runner · Robin</span></button></div><button id="garage-close" class="text-button">CLOSE GARAGE · ESC</button></div></div>
+    <div id="case-screen" class="overlay hidden"><div class="pause-panel case-panel"><div class="title-kicker">WAYNE CAVE · BATCOMPUTER</div><h2>GOTHAM CASE FILES.</h2><p id="case-briefing">Evidence is being analyzed.</p><div id="case-list" class="case-list"></div><button id="case-deploy" class="primary-button">TAKE THE ELEVATOR TO GOTHAM <span>→</span></button><button id="case-close" class="text-button">BACK TO THE CAVE</button></div></div>
+    <div id="transit-screen" class="transit-screen hidden"><span>WAYNE CAVE · ELEVATOR IN MOTION</span><b id="transit-copy">ASCENDING TO GOTHAM</b></div>
     <div id="interaction" class="interaction">[ E ] <span>INTERACT</span></div>
     <div id="gadget-hud" class="gadget-hud"><div class="gadget-icon" id="gadget-icon">✦</div><div><small id="gadget-owner">BATMAN · GADGET</small><b id="gadget-name">BATARANGS</b><span id="gadget-status">READY · T SELECT</span></div><div class="gadget-keys"><span>X USE · T CYCLE</span><span>F GRAPPLE · R RIDE</span></div></div>
     <div id="target-reticle" class="target-reticle hidden">＋<small>GRAPPLE POINT</small></div>
