@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <meta name="theme-color" content="#080d14" />
-  <title>GOTHAM: SHADOWS RISE</title>
+  <title>BATMAN: SHADOWS OF GOTHAM</title>
   <link rel="stylesheet" href="./style.css" />
   <script type="importmap">
     {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
@@ -15,7 +15,7 @@
     <canvas id="world"></canvas>
     <div class="grain"></div>
     <header class="topbar">
-      <div class="brand"><span class="bat-mark">✦</span><div><b>GOTHAM</b><small>SHADOWS RISE</small></div></div>
+      <div class="brand"><span class="bat-mark">✦</span><div><b>BATMAN</b><small>SHADOWS OF GOTHAM</small></div></div>
       <div class="chapter"><span>CASE FILE 01</span><b id="chapter-name">THE CITY THAT NEVER SLEEPS</b></div>
       <button id="pause-button" class="icon-button" aria-label="Pause">Ⅱ</button>
     </header>
@@ -24,18 +24,21 @@
       <div class="hero-card"><div class="hero-avatar" id="hero-avatar">B</div><div><b id="hero-name">THE BAT</b><div class="health"><i id="health-fill"></i></div><small id="health-label">VITALS 100%</small></div><button id="swap-button" title="Swap character (Q)">⇄ <span>Q</span></button></div>
     </section>
     <div id="toast" class="toast"></div>
+    <div id="combo" class="combo hidden"><b id="combo-count">0</b><span>HIT COMBO</span></div>
+    <div id="detective-overlay" class="detective-overlay hidden"><b>DETECTIVE VISION</b><span>Evidence and hostile signatures highlighted · Robin cannot use this mode</span></div>
+    <div id="riddle-card" class="riddle-card hidden"><small>RIDDLER'S CHALLENGE <span id="riddle-index"></span></small><b id="riddle-question"></b><div id="riddle-answers"></div><em>Choose with 1 · 2 · 3</em></div>
     <div id="interaction" class="interaction">[ E ] <span>INTERACT</span></div>
     <div id="bossbar" class="bossbar hidden"><div><span>THREAT DETECTED</span><b id="boss-name">THE RIDDLE KING</b></div><i><em id="boss-fill"></em></i></div>
     <div id="dialogue" class="dialogue hidden"><div class="speaker" id="speaker">GOTHAM CITIZEN</div><p id="dialogue-text"></p><button id="dialogue-next">CONTINUE <span>↵</span></button></div>
     <div id="start-screen" class="overlay">
-      <div class="title-copy"><div class="title-kicker">A GOTHAM ORIGINAL · STORY CAMPAIGN</div><h1>SHADOWS<br><em>RISE</em></h1><p>One city. Two shadows. Forty riddles between you and the truth.</p><button id="start-button" class="primary-button">BEGIN THE CASE <span>→</span></button><div class="microcopy">A 3D action-adventure · Explore, investigate, and protect Gotham</div></div>
+      <div class="title-copy"><div class="title-kicker">A GOTHAM ORIGINAL · STORY CAMPAIGN</div><h1>SHADOWS<br><em>OF GOTHAM</em></h1><p>One city. Two shadows. Fifty challenges between you and the truth.</p><button id="start-button" class="primary-button">BEGIN THE CASE <span>→</span></button><div class="microcopy">A 3D action-adventure · Explore, investigate, and protect Gotham</div></div>
       <div class="story-scrap"><span>GOTHAM CITY · 2008</span><b>THE NIGHT<br>CHANGED<br>EVERYTHING.</b><i>BRUCE WAYNE — CASE 001</i></div>
-      <div class="controls-hint">WASD MOVE <span>·</span> MOUSE LOOK <span>·</span> CLICK / SPACE STRIKE <span>·</span> SHIFT STEALTH <span>·</span> E INTERACT <span>·</span> Q SWAP</div>
+      <div class="controls-hint">WASD MOVE <span>·</span> MOUSE LOOK <span>·</span> CLICK / SPACE STRIKE <span>·</span> SHIFT STEALTH <span>·</span> E INTERACT <span>·</span> Q SWAP <span>·</span> V DETECTIVE MODE <span>·</span> F GRAPPLE <span>·</span> G GLIDE</div>
     </div>
     <div id="pause-screen" class="overlay hidden"><div class="pause-panel"><div class="title-kicker">GOTHAM CITY · CASE PAUSED</div><h2>TAKE A BREATH.</h2><p id="pause-copy">The city is still waiting.</p><button id="resume-button" class="primary-button">RETURN TO GOTHAM <span>→</span></button></div></div>
     <div id="ending-screen" class="overlay hidden"><div class="pause-panel"><div class="title-kicker">CASE FILE CLOSED</div><h2 id="ending-title">GOTHAM STILL STANDS.</h2><p id="ending-copy">The night's work is done. For now.</p><button id="replay-button" class="primary-button">REPLAY AS A VILLAIN <span>→</span></button><button id="new-case-button" class="text-button">REPLAY THE STORY</button></div></div>
     <nav class="touch-controls" aria-label="Touch controls"><div class="dpad"><button data-key="w">▲</button><div><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div></div><div class="touch-actions"><button data-action="stealth">◉<small>HIDE</small></button><button data-action="attack">✦<small>STRIKE</small></button><button data-action="interact">E<small>USE</small></button><button data-action="swap">⇄<small>SWAP</small></button></div></nav>
-    <footer class="bottom-hud"><span id="mode-label">PATROL MODE</span><span>GOTHAM POLICE BAND <i class="signal"></i></span><span id="collectible-label">RIDDLE EVIDENCE 00 / 40</span></footer>
+    <footer class="bottom-hud"><span id="mode-label">PATROL MODE</span><span>GOTHAM POLICE BAND <i class="signal"></i></span><span id="collectible-label">GOTHAM CHALLENGES 00 / 50</span></footer>
   </main>
   <script type="module" src="./game.js"></script>
 </body>
