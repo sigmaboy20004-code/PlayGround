@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#090b18" />
+  <title>Batman: The Dark Knight — Origins</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' fill='%23090b18'/%3E%3Cpath d='M64 18L90 46L88 94L64 110L40 94L38 46Z' fill='%23e5b969'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game" aria-label="Batman: The Dark Knight Origins game">
+    <canvas id="scene"></canvas>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <section id="title-screen" class="title-screen">
+      <div class="title-kicker"><span class="bat-mark">◈</span> A GOTHAM STORY <i></i> 1982</div>
+      <h1>BATMAN<br><span>THE DARK KNIGHT</span><em>ORIGINS</em></h1>
+      <p class="title-copy">Before the symbol. Before the legend.<br>There was just a boy, and one long night.</p>
+      <button id="start-btn" class="primary-btn">BEGIN THE NIGHT <b>↗</b></button>
+      <div class="title-foot">A SHORT INTERACTIVE STORY <span>•</span> BEST WITH SOUND ON</div>
+      <div class="title-line"></div>
+    </section>
+
+    <header id="hud" class="hud hidden">
+      <div class="brand"><span class="bat-mark">◈</span><div><b>GOTHAM CITY</b><small>OCTOBER 31, 1982</small></div></div>
+      <div class="chapter"><small>CHAPTER 01</small><b>THE NIGHT EVERYTHING CHANGED</b></div>
+      <button id="sound-btn" class="sound-btn" aria-label="Toggle sound">♫ <span>SOUND ON</span></button>
+    </header>
+
+    <aside id="objective" class="objective hidden">
+      <span class="objective-icon">✦</span><div><small>YOUR NEXT MOVE</small><b id="objective-text">Find your parents</b></div>
+    </aside>
+
+    <div id="prompt" class="prompt hidden"><span class="keycap">E</span><span id="prompt-text">TALK</span></div>
+
+    <div id="dialogue" class="dialogue hidden">
+      <div class="speaker-line"><span class="speaker-dot"></span><span id="speaker">THOMAS WAYNE</span><span class="dialogue-rule"></span><small>GOTHAM, 1982</small></div>
+      <p id="dialogue-text"></p>
+      <button id="continue-btn">CONTINUE <span>↵</span></button>
+    </div>
+
+    <div id="controls" class="controls hidden">
+      <div class="move-pad" aria-label="Movement controls">
+        <button data-dir="up" class="pad up" aria-label="Move forward">▲</button>
+        <button data-dir="left" class="pad left" aria-label="Move left">◀</button>
+        <button data-dir="down" class="pad down" aria-label="Move backward">▼</button>
+        <button data-dir="right" class="pad right" aria-label="Move right">▶</button>
+        <div class="pad-center">MOVE</div>
+      </div>
+      <button id="action-btn" class="action-btn"><span>↵</span><small>INTERACT</small></button>
+    </div>
+
+    <div id="intro-caption" class="intro-caption hidden"><span>GOTHAM CITY</span><i></i><b>THE WAYNE FAMILY, 1982</b></div>
+
+    <section id="ending" class="ending hidden">
+      <div class="end-symbol">◈</div><small>GOTHAM CITY — 1982</small>
+      <h2>THE NIGHT<br><em>IS JUST BEGINNING.</em></h2>
+      <p>One last ride home. A lifetime still ahead.</p>
+      <button id="replay-btn" class="primary-btn">PLAY AGAIN <b>↻</b></button>
+    </section>
+
+    <div id="loading" class="loading"><span class="loader-mark">◈</span><b>GOTHAM IS WAKING</b><i></i></div>
+    <div class="corner-note">WASD / ARROWS TO MOVE <span>•</span> E TO INTERACT</div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
