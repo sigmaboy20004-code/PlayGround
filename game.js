@@ -115,16 +115,28 @@ function buildTheater() {
   box(world, [10, 5.3, .65], [0, 4.2, -14.9], M.burgundy);
   box(world, [8.6, 4.1, .08], [0, 4.25, -14.48], mat(0x322c40, .9, 0, 0x252144, .38));
   box(world, [8.8, .14, .3], [0, 6.4, -14.35], M.gold);
+  const seatCount = 5 * 7 * 7;
+  const seatParts = [
+    new THREE.InstancedMesh(new THREE.BoxGeometry(.3, .48, .3), M.velvet, seatCount),
+    new THREE.InstancedMesh(new THREE.BoxGeometry(.31, .75, .25), M.burgundy, seatCount),
+    new THREE.InstancedMesh(new THREE.BoxGeometry(.075, .36, .34), M.red, seatCount * 2),
+  ];
+  for (const part of seatParts) { part.castShadow = false; part.receiveShadow = false; world.add(part); }
+  const seatTransform = new THREE.Object3D();
+  let seatIndex = 0, armIndex = 0;
   for (let row = 0; row < 5; row++) for (let col = 0; col < 7; col++) {
     const x = -6.8 + col * 2.25, z = -10.3 + row * 4.05;
     for (let seat = 0; seat < 7; seat++) {
       const sx = x + seat * .34;
-      box(world, [.3, .48, .3], [sx, .42, z], M.velvet);
-      box(world, [.31, .75, .25], [sx, .84, z - .13], M.burgundy);
-      box(world, [.075, .36, .34], [sx - .18, .57, z], M.red);
-      box(world, [.075, .36, .34], [sx + .18, .57, z], M.red);
+      seatTransform.position.set(sx, .42, z); seatTransform.updateMatrix(); seatParts[0].setMatrixAt(seatIndex, seatTransform.matrix);
+      seatTransform.position.set(sx, .84, z - .13); seatTransform.updateMatrix(); seatParts[1].setMatrixAt(seatIndex, seatTransform.matrix);
+      for (const side of [-1, 1]) {
+        seatTransform.position.set(sx + side * .18, .57, z); seatTransform.updateMatrix(); seatParts[2].setMatrixAt(armIndex++, seatTransform.matrix);
+      }
+      seatIndex++;
     }
   }
+  for (const part of seatParts) { part.instanceMatrix.needsUpdate = true; part.computeBoundingSphere(); }
   // center aisle and exit doors
   box(world, [2.4, .035, 27], [0, -.03, 0], mat(0x463c40));
   box(world, [4.1, 4.2, .28], [0, 2.1, 15.3], M.trim);
