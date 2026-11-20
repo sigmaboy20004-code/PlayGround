@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#18251e" />
+  <title>Somewhere to Stay — A small wilderness story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Somewhere to Stay home"><span class="brand-mark">✳</span> <span>small stories <i> / </i> no. 01</span></a>
+      <div class="top-note"><span class="live-dot"></span> A story about making a place</div>
+      <button class="sound-button" id="restartBtn" title="Start a new story">↻ <span>New story</span></button>
+    </header>
+
+    <section class="game-grid" aria-label="Wilderness story game">
+      <div class="scene-column">
+        <section class="scene" id="scene" aria-label="The family's clearing in the woods">
+          <div class="scene-sky"></div><div class="sun"></div>
+          <div class="distant-hill hill-one"></div><div class="distant-hill hill-two"></div>
+          <div class="moon"></div>
+          <div class="stars" aria-hidden="true">·　✦　　　　·　　　✧　　　　　 ·</div>
+          <div class="forest forest-back"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="forest forest-front"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ground"></div>
+          <div class="hut-wrap">
+            <div class="smoke" id="smoke"><i></i><i></i><i></i></div>
+            <div class="hut-roof"></div><div class="hut-body"><div class="hut-door"></div><div class="hut-window"></div><div class="hut-vine"></div></div>
+            <div class="hut-label">HOME, FOR NOW</div>
+          </div>
+          <div class="fire" id="sceneFire"><span></span><i></i><b></b><small></small></div>
+          <div class="family">
+            <div class="person mom" aria-label="Mom">
+              <div class="hair mom-hair"></div><div class="head"><i class="eye"></i><i class="eye second"></i><span class="smile"></span></div>
+              <div class="body mom-body"><span class="patch"></span></div><div class="arm"></div><div class="leg leg-a"></div><div class="leg leg-b"></div>
+            </div>
+            <div class="person kid" aria-label="You, age 10">
+              <div class="hair kid-hair"></div><div class="head"><i class="eye"></i><i class="eye second"></i><span class="smile"></span></div>
+              <div class="body kid-body"><span class="patch"></span></div><div class="arm"></div><div class="leg leg-a"></div><div class="leg leg-b"></div>
+            </div>
+          </div>
+          <div class="snake-zone" id="snakeZone" aria-hidden="true"><span class="snake">〰</span><span class="snake-eye">•</span></div>
+          <div class="scene-caption"><span class="caption-kicker">THE CLEARING</span><span id="sceneCaption">The woods are quiet, for now.</span></div>
+          <div class="day-pill"><span class="sun-icon">☼</span><span id="timeLabel">EARLY MORNING</span></div>
+        </section>
+
+        <section class="story-card" aria-live="polite">
+          <div class="story-heading"><span class="chapter-tag" id="chapterTag">CHAPTER ONE · THE FIRST NIGHT</span><span class="day-count" id="dayCount">DAY 1</span></div>
+          <h1 id="storyTitle">A place to begin.</h1>
+          <p id="storyText">You and Mom found a little shelter at the edge of the woods. The roof leans, and the path is unfamiliar. But it is somewhere to rest. You’re ten, and tonight you’ll make it a little safer together.</p>
+          <div class="story-footer"><div class="weather"><span class="weather-icon">☁</span><span id="weatherText">Clouds gathering beyond the trees</span></div><div class="chapter-progress" aria-label="Story progress"><i class="active"></i><i></i><i></i><i></i><i></i></div></div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="family-card panel">
+          <div class="section-label">YOUR LITTLE FAMILY <span>♡</span></div>
+          <div class="family-row"><div class="avatar mom-avatar">M</div><div class="person-info"><strong>Mom</strong><small>Slow steps, steady heart</small></div><div class="mood" id="momMood">♡ <small>okay</small></div></div>
+          <div class="family-row"><div class="avatar kid-avatar">Y</div><div class="person-info"><strong>You <em>· age <span id="kidAge">10</span></em></strong><small>Brave, even on hard days</small></div><div class="mood kid-mood" id="kidMood">✦ <small>trying</small></div></div>
+          <div class="heart-note" id="heartNote">You have each other. That counts for something.</div>
+        </section>
+
+        <section class="needs-card panel">
+          <div class="section-label">HOW TODAY FEELS <span class="tiny-muted">A gentle check-in</span></div>
+          <div class="need-row"><div class="need-label"><span>Energy</span><b id="energyValue">68%</b></div><div class="meter"><i id="energyBar" class="energy-fill" style="width:68%"></i></div></div>
+          <div class="need-row"><div class="need-label"><span>Fullness</span><b id="foodValue">38%</b></div><div class="meter"><i id="foodBar" class="food-fill" style="width:38%"></i></div></div>
+          <div class="need-row"><div class="need-label"><span>Hope</span><b id="hopeValue">62%</b></div><div class="meter"><i id="hopeBar" class="hope-fill" style="width:62%"></i></div></div>
+        </section>
+
+        <section class="supplies-card panel">
+          <div class="section-label">IN THE BASKET <span class="tiny-muted" id="basketCount">0 things</span></div>
+          <div class="inventory" id="inventory"><div class="empty-inventory">Your basket is waiting for its first find.</div></div>
+          <div class="wood-row"><span class="wood-icon">♨</span><span>Kindling</span><b id="woodCount">1 bundle</b></div>
+        </section>
+
+        <section class="actions-card panel" id="actionsPanel">
+          <div class="section-label">WHAT WILL YOU DO? <span class="tiny-muted" id="hoursLeft">4 hours left</span></div>
+          <div class="action-list">
+            <button class="action-button" data-action="mom-search"><span class="action-icon search-icon">⌕</span><span class="action-copy"><strong>Mom looks for food</strong><small>Takes 2–3 hours · finds a few things</small></span><span class="action-arrow">↗</span></button>
+            <button class="action-button" data-action="gather"><span class="action-icon gather-icon">⌁</span><span class="action-copy"><strong>Gather nearby</strong><small>Look for berries, greens & kindling</small></span><span class="action-arrow">↗</span></button>
+            <button class="action-button" data-action="clear"><span class="action-icon clear-icon">⌁</span><span class="action-copy"><strong>Check around the hut</strong><small>Make a safe, clear path for snakes</small></span><span class="action-arrow">↗</span></button>
+            <button class="action-button" data-action="cook"><span class="action-icon cook-icon">♨</span><span class="action-copy"><strong>Cook a warm meal</strong><small>Takes 4 hours · needs food & a fire</small></span><span class="action-arrow">↗</span></button>
+            <button class="action-button rest-button" data-action="rest"><span class="action-icon rest-icon">☾</span><span class="action-copy"><strong>Rest together</strong><small>Take a breath and make a plan</small></span><span class="action-arrow">↗</span></button>
+          </div>
+          <button class="end-day" id="endDay"><span>Settle in for the night</span><span>→</span></button>
+          <p class="gentle-note">There’s no wrong choice. Take your time.</p>
+        </section>
+      </aside>
+    </section>
+    <footer class="site-footer"><span>Somewhere to Stay</span><span>A gentle survival story · <button id="helpBtn">How to play</button></span><span>Made of small brave things <b>✳</b></span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="modal"><div class="modal-content"><button class="modal-close" id="modalClose" aria-label="Close">×</button><span class="chapter-tag">A NOTE BEFORE YOU BEGIN</span><h2 id="modalTitle">A story about care.</h2><p id="modalText">This is a gentle, fictional survival story. No one is blamed for being poor, and you can’t lose the game. Your choices are about caring for each other, making a safer shelter, and finding small moments of hope.</p><button class="modal-action" id="modalAction">Back to the clearing <span>→</span></button></div></dialog>
+  <script src="game.js"></script>
+</body>
+</html>
