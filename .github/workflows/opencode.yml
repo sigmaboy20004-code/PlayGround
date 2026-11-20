@@ -771,8 +771,6 @@ jobs:
           else
             DEVICE_PROXY=''
           fi
-          # Admin routing: skip direct OpenCode still applies; WARP is never set up for Default.
-          node "$RUNTIME_DIR/scripts/warp-decision.mjs" false false "$LABELS_JSON" >/dev/null 2>&1 || true
           # Compose final HTTPS_PROXY for opencode serve: the phone relay only; models go direct.
           WARP_PROXY=''
           if [[ -n "$DEVICE_PROXY" ]]; then
@@ -903,7 +901,7 @@ jobs:
               return;
             }
             const { parseIssueRequest } = await import(`${process.env.RUNTIME_DIR}/scripts/issue-request.mjs`);
-            const { modelChain: adminChain } = parseIssueRequest(issueResponse.data);
+            const { modelList } = parseIssueRequest(issueResponse.data);
             const { resolveRunModels } = await import(`${process.env.RUNTIME_DIR}/scripts/run-with-model-fallback.mjs`);
             const fusionEnabled = /^[a-f0-9]{40}$/.test(String(process.env.FUSION_PLUGIN_COMMIT || ''));
             let live = null;
@@ -915,13 +913,13 @@ jobs:
             } catch (error) { core.warning(`OpenCode model catalog unavailable: ${error.message}`); }
             const requireShared = process.env.FUSION_REQUIRE_SHARED === 'true';
             const selected = modelLabels[0]?.slice('model/'.length);
-            const { model, models } = resolveRunModels({ selected, live, fusionEnabled, requireShared, forceSharedTest: process.env.FUSION_FORCE_SHARED_TEST === 'true', route: process.env.FUSION_ROUTE, adminChain: selected ? null : adminChain });
-            if (!selected && adminChain?.length && !requireShared) core.info(`Admin model chain requested: ${adminChain.join(' -> ')}; running ${models.join(' -> ')}`);
+            const { model, models, routes } = resolveRunModels({ selected, live, fusionEnabled, requireShared, forceSharedTest: process.env.FUSION_FORCE_SHARED_TEST === 'true', route: process.env.FUSION_ROUTE, modelList });
             if (requireShared) core.info('Shared Fusion checkout overrides inherited model labels; primary cannot fall back to a free provider.');
             const skills = names.filter((name) => name.startsWith('skill/'))
               .map((name) => name.slice('skill/'.length)).sort();
             core.setOutput('model', model);
             core.setOutput('models_json', JSON.stringify(models));
+            core.setOutput('routes_json', JSON.stringify(routes));
             core.setOutput('variant', ['openai/gpt-6.1-sol', 'openai/gpt-6-astra'].includes(model) ? 'high' : '');
             core.setOutput('skills_json', JSON.stringify(skills));
             core.info(`Resolved model=${model}; fusion=${fusionEnabled}; sequence=${models.join(' → ')}; skills=${skills.join(', ') || '(none)'}`);
@@ -989,6 +987,7 @@ jobs:
           OPENCODE_WEB_URL: ${{ steps.opencode_web.outputs.url }}
           OPENCODE_MODEL: ${{ steps.opencode_labels.outputs.model }}
           OPENCODE_MODELS_JSON: ${{ steps.opencode_labels.outputs.models_json }}
+          OPENCODE_MODEL_ROUTES_JSON: ${{ steps.opencode_labels.outputs.routes_json }}
           OPENCODE_VARIANT: ${{ steps.opencode_labels.outputs.variant }}
           OPENCODE_SKILLS: ${{ steps.opencode_labels.outputs.skills_json }}
           GOAL_REQUEST: ${{ env.GOAL_REQUEST }}
